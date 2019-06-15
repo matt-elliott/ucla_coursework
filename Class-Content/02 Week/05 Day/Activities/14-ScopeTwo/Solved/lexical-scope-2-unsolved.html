@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Closure</title>
+</head>
+<body>
+  <h2>Check console to see the madness!</h2>
+
+  <script>
+    var cat = {
+      name: "Gus",
+      color: "gray",
+      age: 15,
+
+      printInfo: function() {
+        console.log("inside printInfo()");
+        
+        // What will this print?
+        //the whole cat with functions
+        console.log(this);
+
+        // What will this print?
+        console.log("Name:", this.name, "Color:", this.color, "Age:", this.age);
+        //name guys color gray age: 15
+
+        var nestedFunction = function() {
+          console.log("inside nestedFunction()");
+
+          // What will this print?
+          console.log(this);
+          //window
+
+          // What will this print?
+          console.log("Name:", this.name, "Color:", this.color, "Age:", this.age);
+          //error this.name is undefined
+
+          var u = function() {
+            console.log(this);
+          }
+
+          u();
+        };
+
+        nestedFunction();
+      }
+    };
+
+    // calls the printInfo function. Which subsequently calls the nestedFunction()
+    cat.printInfo();
+
+</script>
+
+</body>
+</html>

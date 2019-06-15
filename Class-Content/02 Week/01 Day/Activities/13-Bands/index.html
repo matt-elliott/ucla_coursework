@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Favorite Bands</title>
+
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>
+
+    <script type="text/javascript">
+        document.addEventListener( `DOMContentLoaded`, function() {
+            
+            var defaultBands = [`nas`, `eazy-e`, `run dmc`, `jam master flash and the furious five`, `dr. dre`, `snoop dogg`, `tupac`, `2-pac` ];
+
+            var userFavoriteBand = prompt(`Who's you're favorite rapper?`).toLowerCase();
+            var matchedCase = `YEAH I LOVE ` + userFavoriteBand.toUpperCase() + `!`;
+            var noMatchCase = `Nah. ` + userFavoriteBand + `'s pretty lame.`;
+            var outputH1 = document.getElementById(`response`);
+
+            if( defaultBands.indexOf( userFavoriteBand ) !== -1 ) {
+                outputH1.innerHTML = matchedCase;
+            } else {
+                outputH1.innerHTML = noMatchCase;
+            }
+        });
+    </script>
+</head>
+<body class="container">
+    <div class="jumbotron">
+        <h1 id="response" style="font-weight: bold; text-align: center; text-transform: capitalize"></h1>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Do ya like steak?</title>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var someText = document.getElementById('output');
+            var likeSteak;
+            var age = prompt('How old are you?', 9);
+
+            if (parseInt(age) < 21) {
+                someText.innerHTML = 'No Sake for you!';
+            } else {
+                likeSteak = confirm('Do ya like steak?!');
+
+                if (likeSteak === true) {
+                    someText.innerHTML = 'Here’s a Steak Sandwich!';
+                } else if (likeSteak === false) {
+                    someText.innerHTML = 'Here’s a Tofu Stir-Fry!<br /><br /><small>yay.</small>';
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1 id="output">STEAK</h1>
+    </header>
+</body>
+
+</html>

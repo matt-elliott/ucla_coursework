@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 2
+  </title>
+</head>
+
+<body>
+
+  <div id="game">
+    <h1>Player Points <span id="player-points"></span></h1>
+    <h1>Player Wins <span id="player-wins"></span></h1>
+    <h1>Player Loss <span id="player-loss"></span></h1>
+    <h1>This turn: <span id="outcome"></span></h1>
+  </div>
+
+  <script type="text/javascript">
+    var userPoints = 0;
+    var npcPoints = 0;
+    var playerPoints = document.getElementById('player-points');
+    var playerWins = document.getElementById('player-wins');
+    var playerLoss = document.getElementById('player-loss');
+    var thisTurn = document.getElementById('outcome');
+
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["r", "p", "s"];
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+      // Determines which key was pressed.
+      if( event.key === 'r' || event.key === 's' || event.key === 'p') {
+          var userGuess = event.key;
+      } else {
+        var userGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      }
+
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+      if( userGuess === computerGuess ) {
+        thisTurn.innerHTML = userGuess + ' ' + computerGuess + ' = Tie Game!';
+
+      } else if( userGuess === 'r' && computerGuess === 'p' ) {
+        
+        thisTurn.innerHTML = userGuess + ' ' + computerGuess + ' = Computer Win!';
+        npcPoints++;
+
+      } else if( userGuess === 'r' && computerGuess === 's' ) {
+        
+        thisTurn.innerHTML = userGuess + ' ' + computerGuess + ' = User Win';
+        userPoints++;
+        playerPoints.innerHTML = userPoints;
+        playerWins.innerHTML = userPoints;
+
+      } else if( userGuess === 's' && computerGuess === 'r' ) {
+        
+        thisTurn.innerHTML = userGuess + ' ' + computerGuess + ' = Computer Win!';
+        npcPoints++;
+
+      } else if( userGuess === 's' && computerGuess === 'p' ) {
+
+        thisTurn.innerHTML = userGuess + ' ' + computerGuess + ' = User Win';
+        userPoints++;
+        playerPoints.innerHTML = userPoints;
+
+      } else if( userGuess === 'p' && computerGuess === 'r' ) {
+        
+        thisTurn.innerHTML = userGuess + ' ' + computerGuess + ' = User Win';
+        userPoints++;
+
+      } else if( userGuess === 'p' && computerGuess === 's' ) {
+        
+        thisTurn.innerHTML = userGuess + ' ' + computerGuess + ' = Computer Win!';
+        npcPoints++;
+
+      }
+    };
+  </script>
+
+</body>
+
+</html>
