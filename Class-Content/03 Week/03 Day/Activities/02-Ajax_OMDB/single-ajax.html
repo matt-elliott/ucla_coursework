@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Single AJAX</title>
+</head>
+
+<body style="background: #000; color: #e3e3e3; font-size: 16px; font-famil: san serif;">
+  <header>
+    <h1>Star Wars Characters</h1>
+  </header>
+
+  <div id="characters">
+    <div id="character" class="col">
+      <dl id="characterStats">
+        <dt class="characterName"></dt>
+        <dd class="characterSpecies"></dd>
+        <dd class="characterSize"></dd>
+        <dd class="characterFilms"></dd>
+      </dl>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
+    var title = "space+jam";
+    var queryURL = "https://swapi.co/api/people/";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      showData(response);
+    });
+
+
+    var movies;
+    var titles;
+    var gottenTitles = false;
+
+    $.ajax({
+      url: 'https://swapi.co/api/films/',
+      method: "GET"
+    }).then(function(response) {
+      titles = response.results;
+    });
+    console.log(titles);
+
+    function getMovies(movieURLs) {
+      movieURLs.forEach(function(url) {
+        var episodeNumber = url.split('/')[5];
+        console.log(parseInt(episodeNumber));
+        console.log(titles);
+        // return titles.episode_id[episodeNumber];
+      });
+      
+      // var thing = titles.episode_id.index(episodeNumber);
+      // return 'Some Movie!';
+    }
+
+// ---------------------------------------------------------
+
+    function showData(response) {
+
+      response.results.forEach(function (result) {
+
+        var html = `
+          <dt class="characterName" style="font-weight: bold; border-bottom: 2px solid #fff;">${result.name}</dt>
+          <dd class="characterSpecies">${result.species}</dd>
+          <dd class="characterSize">${result.mass} x ${result.height}</dd>
+          <dd class="characterFilms">${getMovies(result.films)}</dd>
+        `;
+        if(!gottenTitles) {
+          gottenTitles = true;
+          $('#characters #character').append(html);
+        }
+      });
+    }
+
+    console.log("This console.log will probably happen first because of asynchronicity.");
+    var x = 2;
+    var y = 10;
+    var z = 13;
+    console.log("We can also assign some variables and do some arithmetic while we wait too: 2 + 10 + 13 = ", x + y + z);
+  </script>
+
+</body>
+
+</html>

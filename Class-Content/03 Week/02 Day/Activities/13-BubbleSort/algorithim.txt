@@ -1,0 +1,12 @@
+//javaascript ~ listen to user click on button to fire bubble sort
+function bubleSort
+  while i < numbers.length 
+    if numbers[i] > numbers[i + 1]
+      //swap current index with next neighbor
+      var current = numbers[i];
+      var next = numbers[i + 1];
+      numbers[i] = next;
+      numbers[i+1] = current;
+
+
+numbers = [5,7,2,24,9]
